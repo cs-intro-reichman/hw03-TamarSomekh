@@ -1,7 +1,7 @@
 /** 
  * Prints the calendars of all the years in the 20th century.
  */
-public class Calendar1 {	
+public class Calendar {	
     // Starting the calendar on 1/1/1900
 	static int dayOfMonth = 1;   
 	static int month = 1;
@@ -17,35 +17,34 @@ public class Calendar1 {
 		// Advances the date and the day-of-the-week from 1/1/1900 till 31/12/1999, inclusive.
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
 	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
-	    int debugDaysCounter = 0; 
 	    
-		int sundayCount = 0;
-
-	 	while (year < 2000) {
+		int givenYear;
+		givenYear = Integer.parseInt(args[0]); 
+	    
+		//advances date until given year
+	 	while (year < givenYear) {	
+	 		advance();
+        }
+		//prints relevant calender
+		while (year == givenYear) {
 
 	 		if (dayOfWeek == 1 && dayOfMonth == 1) {
 				System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
-				sundayCount += 1;
 			}else{
 				System.out.println(dayOfMonth + "/" + month + "/" + year);
 			}
 			
 	 		advance();
-	 		debugDaysCounter++;
-	 		
-			
-	 		//if (debugDaysCounter == 1000) { 
-	 			//break;
-	 		//}
         }
-	 	System.out.println("During the 20th century, " + sundayCount + " Sundays fell on the first day of the month");
 	 }
+
+
 	
 	 // Advances the date (day, month, year) and the day-of-the-week.
 	 // If the month changes, sets the number of days in this month.
 	 // Side effects: changes the static variables dayOfMonth, month, year, dayOfWeek, nDaysInMonth.
 	 private static void advance() {
-		if(year < 2000 && month == 12 && dayOfMonth == nDaysInMonth(month, year)){
+		if(month == 12 && dayOfMonth == nDaysInMonth(month, year)){
 			year += 1;
 		}
 		
